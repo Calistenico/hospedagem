@@ -68,53 +68,6 @@ export function AdminDashboard() {
   };
 
   const tabs = [
-    { id: 'users', label: 'Usuários', icon: Users },
-    { id: 'orders', label: 'Pedidos', icon: Package },
-    { id: 'affiliates', label: 'Afiliados', icon: TrendingUp },
-    { id: 'withdrawals', label: 'Saques', icon: DollarSign },
-    { id: 'settings', label: 'Configurações', icon: Settings }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-[#1a237e] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="bg-[#00e676] p-3 rounded-full">
-                <Settings className="h-8 w-8 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold">Painel de Administração</h1>
-                <p className="text-gray-200">Gerencie usuários, pedidos e configurações</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-            <div className="w-20 h-20 bg-[#00e676] rounded-full mx-auto mb-4 flex items-center justify-center">
-              <DollarSign className="h-10 w-10 text-white" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Saques Pendentes</h3>
-            <p className="text-gray-200">
-              {pendingWithdrawals.length} solicitações pendentes
-            </p>
-          </div>
-          
-          <div className="bg-white/10 rounded-xl p-8 backdrop-blur-sm">
-            <div className="w-20 h-20 bg-[#00e676] rounded-full mx-auto mb-4 flex items-center justify-center">
-              <TrendingUp className="h-10 w-10 text-white" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Total Comissões</h3>
-            <p className="text-gray-200">
-              R$ {totalCommissionsPaid.toFixed(2).replace('.', ',')}
-            </p>
-          </div>
-        </div>
-      </div>
-
       {/* Stats */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
