@@ -170,6 +170,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       affiliateId
     };
     
+    // Salvar pedido primeiro
+    const updatedOrders = [...orders, newOrder];
+    setOrders(updatedOrders);
+    localStorage.setItem('orders', JSON.stringify(updatedOrders));
+    
     // Se há configuração do Mercado Pago, redirecionar para pagamento
     if (paymentSettings.mercadoPagoAccessToken) {
       try {
@@ -186,11 +191,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         
         const preference = await mpService.createPreference(paymentData, newOrder.id, user.email);
         
-        // Salvar pedido antes de redirecionar
-        const updatedOrders = [...orders, newOrder];
-        setOrders(updatedOrders);
-        localStorage.setItem('orders', JSON.stringify(updatedOrders));
-        
         // Redirecionar para o Mercado Pago
         window.location.href = preference.init_point;
         return;
@@ -202,10 +202,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     
     // Fluxo normal sem pagamento automático
-    const updatedOrders = [...orders, newOrder];
-    setOrders(updatedOrders);
-    localStorage.setItem('orders', JSON.stringify(updatedOrders));
-    
     // Update user plan status
     const updatedUser = { ...user, plan, planStatus: 'pending' as const };
     setUser(updatedUser);

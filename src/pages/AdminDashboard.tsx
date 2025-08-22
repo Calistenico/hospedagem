@@ -203,40 +203,40 @@ export function AdminDashboard() {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {users.filter(u => !u.isAdmin).map((user) => (
-                        <tr key={user.id} className="hover:bg-gray-50">
+                      {users.filter(u => !u.isAdmin).map((userItem) => (
+                        <tr key={userItem.id} className="hover:bg-gray-50">
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
                               <div className="bg-[#00e676]/10 p-2 rounded-full mr-3">
                                 <User className="h-5 w-5 text-[#00e676]" />
                               </div>
                               <div>
-                                <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                                <div className="text-sm font-medium text-gray-900">{userItem.name}</div>
                               </div>
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">{user.email}</div>
+                            <div className="text-sm text-gray-900">{userItem.email}</div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="text-sm text-gray-900">
-                              {user.plan && user.plan !== 'none' ? user.plan : 'Nenhum plano'}
+                              {userItem.plan && userItem.plan !== 'none' ? userItem.plan : 'Nenhum plano'}
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                              user.planStatus === 'active' 
+                              userItem.planStatus === 'active' 
                                 ? 'bg-green-100 text-green-800'
-                                : user.planStatus === 'pending'
+                                : userItem.planStatus === 'pending'
                                 ? 'bg-yellow-100 text-yellow-800'
                                 : 'bg-gray-100 text-gray-800'
                             }`}>
-                              {user.planStatus === 'active' ? 'Ativo' : 
-                               user.planStatus === 'pending' ? 'Pendente' : 'Inativo'}
+                              {userItem.planStatus === 'active' ? 'Ativo' : 
+                               userItem.planStatus === 'pending' ? 'Pendente' : 'Inativo'}
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {user.id}
+                            {userItem.id}
                           </td>
                         </tr>
                       ))}
