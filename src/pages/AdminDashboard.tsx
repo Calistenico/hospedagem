@@ -68,6 +68,15 @@ export function AdminDashboard() {
   };
 
   const tabs = [
+    { id: 'users', label: 'Usuários', icon: Users },
+    { id: 'orders', label: 'Pedidos', icon: Package },
+    { id: 'affiliates', label: 'Afiliados', icon: TrendingUp },
+    { id: 'withdrawals', label: 'Saques', icon: DollarSign },
+    { id: 'settings', label: 'Configurações', icon: Settings }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
       {/* Stats */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
@@ -427,95 +436,6 @@ export function AdminDashboard() {
                           >
                             <CheckCircle className="h-4 w-4 mr-2" />
                             Ativar Hospedagem
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Completed Orders */}
-                <div>
-                    <Clock className="h-5 w-5 mr-2 text-yellow-500" />
-                    Pedidos Pendentes ({pendingOrders.length})
-                  </h3>
-                  
-                  {pendingOrders.length === 0 ? (
-                    <div className="text-center py-12 text-gray-500">
-                      <Package className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                      <p>Nenhum pedido pendente</p>
-                    </div>
-                  ) : (
-                    <div className="space-y-4">
-                      {pendingOrders.map((order) => (
-                        <div key={order.id} className="border border-yellow-200 bg-yellow-50 rounded-lg p-6">
-                          <div className="flex items-start justify-between mb-4">
-                            <div>
-                              <h4 className="text-lg font-semibold text-gray-900">
-                                Pedido #{order.id.substring(0, 8)}
-                              </h4>
-                              <p className="text-gray-600">
-                                Cliente: {order.userName} ({order.userEmail})
-                              </p>
-                              <p className="text-gray-600">
-                                Plano: {order.plan} - {order.price}
-                              </p>
-                              <p className="text-sm text-gray-500">
-                                Data: {new Date(order.createdAt).toLocaleDateString('pt-BR')}
-                              </p>
-                            </div>
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                              <Clock className="h-4 w-4 mr-1" />
-                              Pendente
-                            </span>
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Login do cPanel
-                              </label>
-                              <input
-                                type="text"
-                                value={hostingDetails[order.id]?.login || ''}
-                                onChange={(e) => updateHostingDetails(order.id, 'login', e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#00e676] focus:border-[#00e676]"
-                                placeholder="username"
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Senha do cPanel
-                              </label>
-                              <input
-                                type="text"
-                                value={hostingDetails[order.id]?.password || ''}
-                                onChange={(e) => updateHostingDetails(order.id, 'password', e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#00e676] focus:border-[#00e676]"
-                                placeholder="password"
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">
-                                URL do cPanel
-                              </label>
-                              <input
-                                type="text"
-                                value={hostingDetails[order.id]?.cpanelUrl || ''}
-                                onChange={(e) => updateHostingDetails(order.id, 'cpanelUrl', e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#00e676] focus:border-[#00e676]"
-                                placeholder="https://cpanel.exemplo.com"
-                              />
-                            </div>
-                          </div>
-
-                          <button
-                            onClick={() => handleCompleteOrder(order.id)}
-                            disabled={!hostingDetails[order.id]?.login || !hostingDetails[order.id]?.password || !hostingDetails[order.id]?.cpanelUrl}
-                            className="flex items-center px-4 py-2 bg-[#00e676] text-white rounded-lg hover:bg-[#00e676]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                          >
-                            <CheckCircle className="h-4 w-4 mr-2" />
-                            Marcar como Concluído
                           </button>
                         </div>
                       ))}
