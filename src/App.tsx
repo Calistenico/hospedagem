@@ -11,6 +11,9 @@ import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { ClientDashboard } from './pages/ClientDashboard';
 import { AdminDashboard } from './pages/AdminDashboard';
+import { PaymentSuccess } from './pages/PaymentSuccess';
+import { PaymentError } from './pages/PaymentError';
+import { PaymentPending } from './pages/PaymentPending';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,6 +37,9 @@ function App() {
               <Route path="/cadastro" element={<Register />} />
               <Route path="/cliente" element={<ClientDashboard />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/pagamento/sucesso" element={<PaymentSuccess />} />
+              <Route path="/pagamento/erro" element={<PaymentError />} />
+              <Route path="/pagamento/pendente" element={<PaymentPending />} />
             </Routes>
           </main>
           

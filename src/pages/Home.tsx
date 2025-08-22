@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Server, Shield, Clock, Headphones, ArrowRight, Zap, Globe, Lock } from 'lucide-react';
 import { PricingCard } from '../components/PricingCard';
 import { useAuth } from '../contexts/AuthContext';
+import { AffiliateService } from '../services/affiliateService';
 
 export function Home() {
   const [isAnnual, setIsAnnual] = useState(false);
   const { user, purchasePlan } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Verificar se há parâmetro de afiliado na URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const affiliateRef = urlParams.get('ref');
+    
+    if (affiliateRef) {
+      AffiliateService.setAffiliateCookie(affiliateRef);
+      AffiliateService.trackClick(affiliateRef);
+    }
+  }, []);
 
   const plans = [
     {
@@ -61,13 +74,13 @@ export function Home() {
     }
   ];
 
-  const handlePurchase = (plan: string, price: string) => {
+  const handlePurchase = async (plan: string, price: string) => {
     if (!user) {
       navigate('/login');
       return;
     }
     
-    purchasePlan(plan, price);
+    await purchasePlan(plan, price);
     navigate('/cliente');
   };
 

@@ -29,9 +29,9 @@ export function PricingCard({
   const currentPrice = isAnnual ? annualPrice : monthlyPrice;
   const billing = isAnnual ? 'anual' : 'mensal';
 
-  const handlePurchase = () => {
+  const handlePurchase = async () => {
     const priceText = `R$ ${currentPrice.toFixed(2).replace('.', ',')}/${billing}`;
-    onPurchase(name, priceText);
+    await onPurchase(name, priceText);
   };
 
   return (
